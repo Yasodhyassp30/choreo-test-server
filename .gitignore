@@ -56,8 +56,6 @@ ENV/
 env.bak/
 
 # Docker
-Dockerfile
-docker-compose.yml
 
 # Logs
 logs/
