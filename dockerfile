@@ -16,6 +16,9 @@ RUN addgroup --gid 10014 choreo && \
 USER 10014
 
 RUN ls
+RUN cd /models
+RUN ls
+RUN cd ..
 
 
 EXPOSE 5000
