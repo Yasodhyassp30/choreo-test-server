@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: Water Quality Prediction API
+  version: 1.0.0
+paths:
+  /api/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid data format or user already exists
+        '500':
+          description: An unexpected error occurred
+  /api/login:
+    post:
+      summary: Login as an existing user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User logged in successfully
+        '400':
+          description: Invalid credentials or data format
+        '500':
+          description: An unexpected error occurred
+  /predict:
+    post:
+      summary: Get water quality prediction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    turbidity:
+                      type: number
+                    ph:
+                      type: number
+                    conductivity:
+                      type: number
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prediction:
+                    type: number
+                  output:
+                    type: number
+                  all_output:
+                    type: array
+                    items:
+                      type: number
+        '400':
+          description: Invalid input
+        '500':
+          description: Unexpected Error Occurred

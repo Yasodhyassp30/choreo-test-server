@@ -10,3 +10,4 @@ endpoints:
 
     networkVisibility: Public
     context: /
+    schemaFilePath: ./openAPI.yaml
