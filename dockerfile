@@ -8,8 +8,15 @@ RUN pip install -r req.txt
 
 COPY . ./
 
+RUN addgroup --gid 10014 choreo && \
+    adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
+
+RUN mkdir -p /app/models && chmod -R 777 /app/models
+
+USER 10014
 EXPOSE 5000
 
-CMD ["waitress-serve", "--port=5000", "app:app"]
+CMD [ "python", "app.py"]
 
 
+ 
