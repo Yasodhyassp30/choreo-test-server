@@ -14,6 +14,10 @@ RUN addgroup --gid 10014 choreo && \
 
 
 USER 10014
+
+RUN ls
+
+
 EXPOSE 5000
 
 CMD [ "python", "app.py"]
