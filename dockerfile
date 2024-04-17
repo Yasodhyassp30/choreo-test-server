@@ -16,5 +16,7 @@ RUN addgroup --gid 10014 choreo && \
 USER 10014
 EXPOSE 5000
 
-CMD ["waitress-serve", "--port=5000", "app:app"]
+CMD [ "python", "app.py"]
 
+
+ 

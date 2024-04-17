@@ -5,6 +5,7 @@ import os
 import joblib
 from pymongo import MongoClient
 import certifi
+from waitress import serve
 
 
 
@@ -42,4 +43,5 @@ if __name__ == '__main__':
     app.before_request(jwt_middleware)
     app.register_blueprint(predict_api)
     app.register_blueprint(user_api)
-    app.run(debug=True,port=os.getenv('PORT'))
+    serve(app, host='0.0.0.0', port=os.getenv('PORT'))
+    
