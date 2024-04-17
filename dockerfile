@@ -1,5 +1,8 @@
 FROM python:3.9-slim
 
+RUN groupadd -g 10014 myuser && \
+    useradd -r -u 10014 -g myuser myuser
+
 WORKDIR /app
 
 COPY req.txt .
