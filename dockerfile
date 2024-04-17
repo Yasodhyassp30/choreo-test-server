@@ -13,6 +13,8 @@ RUN addgroup --gid 10014 choreo && \
 
 RUN mkdir -p /app/models && chmod -R 777 /app/models
 
+VOLUME /app/models
+
 USER 10014
 EXPOSE 5000
 
