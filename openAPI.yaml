@@ -47,6 +47,78 @@ paths:
           description: Invalid credentials or data format
         '500':
           description: An unexpected error occurred
+  /send_readings:
+    post:
+      summary: Save sensor readings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ph:
+                  type: number
+                turbidity:
+                  type: number
+                conductivity:
+                  type: number
+                sensor_id:
+                  type: string
+              required:
+                - ph
+                - turbidity
+                - conductivity
+                - sensor_id
+      responses:
+        '200':
+          description: Readings Saved
+        '400':
+          description: Invalid input
+        '500':
+          description: Unexpected Error Occurred
+  /get_readings:
+    get:
+      summary: Get sensor readings
+      parameters:
+        - in: query
+          name: sensor_id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Returned sensor readings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  readings:
+                    type: object
+        '404':
+          description: No readings found
+        '500':
+          description: Unexpected Error Occurred
+  /add_sensor:
+    post:
+      summary: Add a new sensor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sensor_id:
+                  type: string
+              required:
+                - sensor_id
+      responses:
+        '200':
+          description: Sensor Added
+        '500':
+          description: Unexpected Error Occurred
   /predict:
     post:
       summary: Get water quality prediction

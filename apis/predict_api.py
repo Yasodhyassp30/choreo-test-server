@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify,current_app
 import numpy as np
-from validation.predict_validation import validate_input
+from validation.predict_validation import validate_input,validate_sensor
 
 
 predict_api = Blueprint('predict_api', __name__,url_prefix='/api')
@@ -44,11 +44,10 @@ def get_predictions():
 def save_readings():
     try:
         data = request.json
-        validate_input(data)
+        validate_sensor(data)
         ph = data['ph']
         turbidity = data['turbidity']
         conductivity = data['conductivity']
-        alum = data['alum']
         sensor_id = data['sensor_id']
         mongo_db = current_app.config['mongo_db']
         collection = mongo_db['readings']
