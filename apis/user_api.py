@@ -65,6 +65,8 @@ def login():
                 return jsonify({'user':user_exists,'message': 'User logged in successfully'}), 200
             else:
                 return jsonify({'error': 'Invalid credentials'}), 400
+        else:
+            return jsonify({'error': 'User not found'}), 404
     except (ValueError, TypeError) as ve_te:
         return jsonify({'error': 'Invalid data format: ' + str(ve_te)}), 400
     except Exception as e:
