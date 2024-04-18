@@ -66,4 +66,6 @@ if __name__ == '__main__':
     app.register_blueprint(predict_api)
     app.register_blueprint(user_api)
     serve(app, host='0.0.0.0', port=os.getenv('PORT'))
+    print("Server Started and Running on Port : ",os.getenv('PORT'))
+
     
