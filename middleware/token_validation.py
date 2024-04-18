@@ -5,7 +5,7 @@ import jwt
 def jwt_middleware():
     headers = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' } 
     if request.method == 'OPTIONS' or request.method == 'options': return jsonify(headers), 200
-    excluded_routes = ['/api/login', '/api/register']
+    excluded_routes = ['/api/login', '/api/register','/api/send_readings']
     if request.path not in excluded_routes:
         auth_header = request.headers.get('Authorization')
         if not auth_header or not auth_header.startswith('Bearer '):
