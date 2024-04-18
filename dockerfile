@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:alpine
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN pip install -r req.txt
 
 COPY . ./
 
-RUN addgroup --gid 10014 choreo && \
+RUN addgroup --g 10014 choreo && \
     adduser --disabled-password --no-create-home --uid 10014 --ingroup choreo choreouser
 
 RUN mkdir -p /app/models && chmod -R 777 /app/models
