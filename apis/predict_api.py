@@ -3,7 +3,7 @@ import numpy as np
 from validation.predict_validation import validate_input
 
 
-predict_api = Blueprint('predict_api', __name__)
+predict_api = Blueprint('predict_api', __name__,url_prefix='/api')
 
 @predict_api.route('/predict', methods=['POST'])
 def get_predictions():

@@ -47,7 +47,7 @@ paths:
           description: Invalid credentials or data format
         '500':
           description: An unexpected error occurred
-  /predict:
+  api/predict:
     post:
       summary: Get water quality prediction
       requestBody:
