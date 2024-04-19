@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify,current_app
 import numpy as np
 from validation.predict_validation import validate_input,validate_sensor
+from app import mongo_db as db
 
 
 predict_api = Blueprint('predict_api', __name__,url_prefix='/api')
@@ -49,8 +50,7 @@ def save_readings():
         turbidity = data['turbidity']
         conductivity = data['conductivity']
         sensor_id = data['sensor_id']
-        mongo_db = current_app.config['mongo_db']
-        collection = mongo_db['readings']
+        collection = db['readings']
         collection.update_one({
             'sensor_id': sensor_id
         },{
@@ -75,8 +75,7 @@ def save_readings():
 def get_readings():
     try:
         sensor_id = request.args.get('sensor_id')
-        mongo_db = current_app.config['mongo_db']
-        collection = mongo_db['readings']
+        collection = db['readings']
         readings = collection.find_one({
             'sensor_id': sensor_id
         })
@@ -93,8 +92,8 @@ def add_sensor():
     try:
         data = request.json
         sensor_id = data['sensor_id']
-        mongo_db = current_app.config['mongo_db']
-        collection = mongo_db['readings']
+
+        collection = db['readings']
         collection.insert_one({
             'sensor_id': sensor_id,
             'ph': 0,

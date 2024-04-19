@@ -19,16 +19,10 @@ def validate_input(data):
     
 def validate_sensor(data):
     schema = {
-        'data': {
-            'type': 'dict',
-            'required': True,
-            'schema': {
-                'sensor_id': {'type': 'string', 'required': True},
-                'ph':{'type': 'float', 'required': True},
-                'turbidity': {'type': 'float', 'required': True},
-                'conductivity': {'type': 'float', 'required': True},
-            }
-        }
+            'sensor_id': {'type': 'string', 'required': True},
+            'ph':{'type': 'float', 'required': True},
+            'turbidity': {'type': 'float', 'required': True},
+            'conductivity': {'type': 'float', 'required': True},     
     }
 
     v = Validator(schema)
