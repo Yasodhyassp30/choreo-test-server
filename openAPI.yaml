@@ -65,11 +65,14 @@ paths:
                   type: number
                 sensor_id:
                   type: string
+                temp:
+                  type: number
               required:
                 - ph
                 - turbidity
                 - conductivity
                 - sensor_id
+                - temp
       responses:
         '200':
           description: Readings Saved
