@@ -46,18 +46,16 @@ def save_readings():
     try:
         data = request.json
         validate_sensor(data)
-        ph = data['ph']
-        turbidity = data['turbidity']
-        conductivity = data['conductivity']
-        sensor_id = data['sensor_id']
         collection = db['readings']
+
         collection.update_one({
-            'sensor_id': sensor_id
+            'sensor_id': data['sensor_id']
         },{
             '$set': {
-            'ph': ph,
-            'turbidity': turbidity,
-            'conductivity': conductivity,
+            'ph': data['ph'],
+            'turbidity': data['turbidity'],
+            'conductivity': data['conductivity'],
+            'temp':data['temp']
             }
         },upsert=True)
 
@@ -98,7 +96,8 @@ def add_sensor():
             'sensor_id': sensor_id,
             'ph': 0,
             'turbidity': 0,
-            'conductivity': 0
+            'conductivity': 0,
+            'temp':0
         })
         return jsonify({'message': 'Sensor Added'}), 200
     except Exception as e:
