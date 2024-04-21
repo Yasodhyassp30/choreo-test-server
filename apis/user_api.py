@@ -72,3 +72,8 @@ def login():
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred'}), 500
+    
+
+@user_api.route('/validate_token',methods=['GET'])
+def is_valid():
+    return jsonify({'message': 'Token is valid'}), 200

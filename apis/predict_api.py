@@ -78,6 +78,7 @@ def get_readings():
             'sensor_id': sensor_id
         })
         if readings:
+            readings['_id'] = str(readings['_id'])
             return jsonify({'readings': readings}), 200
         else:
             return jsonify({'error': 'No readings found'}), 404

@@ -122,6 +122,21 @@ paths:
           description: Sensor Added
         '500':
           description: Unexpected Error Occurred
+  /validate_token:
+    get:
+      summary: Check if a token is valid
+      description: Endpoint to check if a token is valid.
+      responses:
+        '200':
+          description: Token is valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token is valid
   /predict:
     post:
       summary: Get water quality prediction
